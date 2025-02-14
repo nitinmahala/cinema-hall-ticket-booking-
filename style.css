@@ -1,0 +1,236 @@
+:root {
+  --primary: #6c5ce7;
+  --secondary: #a8a5e6;
+  --accent: #00ff88;
+  --background: #0f0c29;
+  --surface: #2a2745;
+  --text: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, var(--background) 0%, #24243e 100%);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-effects {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-100vh) translateX(100px); }
+  100% { transform: translateY(-200vh) translateX(0); }
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+select {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  padding: 0.5rem;
+  appearance: none;
+  outline: none;
+  width: 100%;
+}
+
+.custom-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.theater {
+  background: rgba(0,0,0,0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.screen-container {
+  position: relative;
+  margin: 0 auto 3rem;
+  width: 80%;
+  perspective: 1000px;
+}
+
+.screen {
+  background: linear-gradient(45deg, #e0e0e0, #ffffff);
+  height: 100px;
+  border-radius: 8px;
+  transform: rotateX(-45deg);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.seat {
+  background: var(--surface);
+  height: 20px;
+  width: 25px;
+  margin: 5px;
+  border-radius: 8px 8px 2px 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seat.selected {
+  background: var(--accent);
+  box-shadow: 0 0 15px rgba(0,255,136,0.3);
+}
+
+.seat.occupied {
+  background: #4a4a68;
+}
+
+.seat:not(.occupied):hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background: var(--primary);
+}
+
+.summary-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108,92,231,0.4);
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--background);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  animation: slideUp 0.3s ease;
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 100%); }
+  to { transform: translate(-50%, 0); }
+}
+
+@media (max-width: 768px) {
+  .seat {
+    height: 15px;
+    width: 20px;
+    margin: 3px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
